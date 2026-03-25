@@ -292,6 +292,28 @@ html, body, [class*="css"] {
     background: #ffffff !important;
     color: #0f172a !important;
 }
+
+/* Sidebar radio menu — texto visible */
+[data-testid="stSidebar"] .stRadio label {
+    color: #1e293b !important;
+    font-size: 14px !important;
+    font-weight: 500 !important;
+}
+
+[data-testid="stSidebar"] .stRadio label:hover {
+    color: #1d4ed8 !important;
+}
+
+[data-testid="stSidebar"] .stRadio [aria-checked="true"] + div label,
+[data-testid="stSidebar"] .stRadio [data-checked="true"] label {
+    color: #1d4ed8 !important;
+    font-weight: 600 !important;
+}
+
+[data-testid="stSidebar"] p,
+[data-testid="stSidebar"] div {
+    color: #334155;
+}
 </style>
 """, unsafe_allow_html=True)
 
