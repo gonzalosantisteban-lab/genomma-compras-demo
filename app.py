@@ -3,7 +3,7 @@ import time
 import pandas as pd
 
 st.set_page_config(
-    page_title="Agente de Compras — Genomma Lab",
+    page_title="AI Procurement Cerebro — Genomma Lab",
     page_icon="⚡",
     layout="wide",
     initial_sidebar_state="expanded"
@@ -429,7 +429,7 @@ html, body, [class*="css"] {
 with st.sidebar:
     st.markdown("""
     <div style="padding: 8px 0 20px 0;">
-        <div style="font-size: 22px; font-weight: 800; color: #f1f5f9; letter-spacing: -0.5px;">⚡ ComprasAI</div>
+        <div style="font-size: 22px; font-weight: 800; color: #f1f5f9; letter-spacing: -0.5px;">⚡ AI PROCUREMENT CEREBRO</div>
         <div style="font-size: 12px; color: #475569; margin-top: 2px;">Genomma Lab · Demo v0.1</div>
     </div>
     """, unsafe_allow_html=True)
