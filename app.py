@@ -609,31 +609,56 @@ elif page == "Demo: Cajilla Flanax":
     tab1, tab2, tab3 = st.tabs(["  Cotizacion recibida  ", "  Analisis del agente  ", "  Argumento y ahorro  "])
 
     with tab1:
-        col1, col2 = st.columns(2)
-        specs_left = [
-            ("Material", "Cajilla plegadiza farmaceutica", False),
-            ("Sustrato", "SBS 350 g/m² · Calibre 12 pt", False),
-            ("Area desarrollada", "452 cm²", False),
-            ("Impresion", "4 Pantones + barniz UV full", False),
-            ("Acabados", "Hot stamping dorado en logo", False),
-            ("Precio cotizado", "$1.85 MXN / pieza", True),
+        # Fila de precios destacados
+        pc1, pc2, pc3, pc4 = st.columns(4)
+        with pc1:
+            st.markdown("""
+            <div style="background:#fff1f2;border:1.5px solid #fecdd3;border-radius:10px;padding:16px 18px;">
+                <div style="font-size:11px;color:#94a3b8;text-transform:uppercase;letter-spacing:1px;font-weight:600;">Precio cotizado</div>
+                <div style="font-size:28px;font-weight:800;color:#f43f5e;margin:4px 0;">$1.85</div>
+                <div style="font-size:12px;color:#64748b;">MXN / pieza</div>
+            </div>""", unsafe_allow_html=True)
+        with pc2:
+            st.markdown("""
+            <div style="background:#f0fdf4;border:1.5px solid #bbf7d0;border-radius:10px;padding:16px 18px;">
+                <div style="font-size:11px;color:#94a3b8;text-transform:uppercase;letter-spacing:1px;font-weight:600;">Total cotizacion</div>
+                <div style="font-size:28px;font-weight:800;color:#16a34a;margin:4px 0;">$277,500</div>
+                <div style="font-size:12px;color:#64748b;">MXN · 150,000 pzas</div>
+            </div>""", unsafe_allow_html=True)
+        with pc3:
+            st.markdown("""
+            <div style="background:#f8fafc;border:1.5px solid #e2e8f0;border-radius:10px;padding:16px 18px;">
+                <div style="font-size:11px;color:#94a3b8;text-transform:uppercase;letter-spacing:1px;font-weight:600;">Proveedor</div>
+                <div style="font-size:15px;font-weight:700;color:#0f172a;margin:6px 0;">Grupo Cartonero del Bajio</div>
+                <div style="font-size:12px;color:#64748b;">60 dias de credito</div>
+            </div>""", unsafe_allow_html=True)
+        with pc4:
+            st.markdown("""
+            <div style="background:#f8fafc;border:1.5px solid #e2e8f0;border-radius:10px;padding:16px 18px;">
+                <div style="font-size:11px;color:#94a3b8;text-transform:uppercase;letter-spacing:1px;font-weight:600;">Fecha</div>
+                <div style="font-size:15px;font-weight:700;color:#0f172a;margin:6px 0;">24 marzo 2026</div>
+                <div style="font-size:12px;color:#64748b;">SAP: 1000234-M</div>
+            </div>""", unsafe_allow_html=True)
+
+        st.markdown("<div style='height:14px'></div>", unsafe_allow_html=True)
+
+        # Grid de especificaciones
+        g1, g2, g3 = st.columns(3)
+        specs_grid = [
+            (g1, "Material", "Cajilla plegadiza farmaceutica", "📦"),
+            (g2, "Sustrato", "SBS 350 g/m² · Calibre 12 pt", "📋"),
+            (g3, "Area desarrollada", "452 cm²", "📐"),
+            (g1, "Impresion", "4 Pantones + barniz UV full", "🎨"),
+            (g2, "Acabados", "Hot stamping dorado en logo", "✨"),
+            (g3, "Proceso", "Troquel Bobst + folder-gluer", "⚙️"),
         ]
-        specs_right = [
-            ("Proceso", "Troquel Bobst + folder-gluer", False),
-            ("Volumen cotizado", "150,000 piezas", False),
-            ("Total cotizacion", "$277,500 MXN", True),
-            ("Dias de credito", "60 dias", False),
-            ("Proveedor", "Grupo Cartonero del Bajio", False),
-            ("Fecha cotizacion", "24 marzo 2026", False),
-        ]
-        with col1:
-            for label, valor, highlight in specs_left:
-                css = "spec-val-highlight" if highlight else "spec-val"
-                st.markdown(f'<div class="spec-row"><span class="spec-label">{label}</span><span class="{css}">{valor}</span></div>', unsafe_allow_html=True)
-        with col2:
-            for label, valor, highlight in specs_right:
-                css = "spec-val-highlight" if highlight else "spec-val"
-                st.markdown(f'<div class="spec-row"><span class="spec-label">{label}</span><span class="{css}">{valor}</span></div>', unsafe_allow_html=True)
+        for col, label, valor, icon in specs_grid:
+            with col:
+                st.markdown(f"""
+                <div style="background:#ffffff;border:1px solid #e2e8f0;border-radius:8px;padding:12px 14px;margin-bottom:10px;">
+                    <div style="font-size:11px;color:#94a3b8;text-transform:uppercase;letter-spacing:0.5px;font-weight:600;margin-bottom:4px;">{icon} {label}</div>
+                    <div style="font-size:14px;font-weight:600;color:#0f172a;">{valor}</div>
+                </div>""", unsafe_allow_html=True)
 
     with tab2:
         if not st.session_state.cajilla_analizado:
@@ -782,31 +807,54 @@ elif page == "Demo: Frasco HDPE":
     tab1, tab2, tab3 = st.tabs(["  Cotizacion recibida  ", "  Analisis del agente  ", "  Argumento y ahorro  "])
 
     with tab1:
-        col1, col2 = st.columns(2)
-        specs_left = [
-            ("Material", "Frasco rigido plastico 120ml", False),
-            ("Resina", "HDPE virgen", False),
-            ("Gramaje", "22 gramos", False),
-            ("Color", "Blanco (masterbatch 2%)", False),
-            ("Rosca", "38mm estandar", False),
-            ("Precio cotizado", "$4.20 MXN / pieza", True),
+        pc1, pc2, pc3, pc4 = st.columns(4)
+        with pc1:
+            st.markdown("""
+            <div style="background:#fffbeb;border:1.5px solid #fde68a;border-radius:10px;padding:16px 18px;">
+                <div style="font-size:11px;color:#94a3b8;text-transform:uppercase;letter-spacing:1px;font-weight:600;">Precio cotizado</div>
+                <div style="font-size:28px;font-weight:800;color:#f59e0b;margin:4px 0;">$4.20</div>
+                <div style="font-size:12px;color:#64748b;">MXN / pieza</div>
+            </div>""", unsafe_allow_html=True)
+        with pc2:
+            st.markdown("""
+            <div style="background:#f0fdf4;border:1.5px solid #bbf7d0;border-radius:10px;padding:16px 18px;">
+                <div style="font-size:11px;color:#94a3b8;text-transform:uppercase;letter-spacing:1px;font-weight:600;">Total cotizacion</div>
+                <div style="font-size:28px;font-weight:800;color:#16a34a;margin:4px 0;">$336,000</div>
+                <div style="font-size:12px;color:#64748b;">MXN · 80,000 pzas</div>
+            </div>""", unsafe_allow_html=True)
+        with pc3:
+            st.markdown("""
+            <div style="background:#f8fafc;border:1.5px solid #e2e8f0;border-radius:10px;padding:16px 18px;">
+                <div style="font-size:11px;color:#94a3b8;text-transform:uppercase;letter-spacing:1px;font-weight:600;">Proveedor</div>
+                <div style="font-size:15px;font-weight:700;color:#0f172a;margin:6px 0;">Envases Plasticos del Norte</div>
+                <div style="font-size:12px;color:#64748b;">45 dias de credito</div>
+            </div>""", unsafe_allow_html=True)
+        with pc4:
+            st.markdown("""
+            <div style="background:#f8fafc;border:1.5px solid #e2e8f0;border-radius:10px;padding:16px 18px;">
+                <div style="font-size:11px;color:#94a3b8;text-transform:uppercase;letter-spacing:1px;font-weight:600;">Fecha</div>
+                <div style="font-size:15px;font-weight:700;color:#0f172a;margin:6px 0;">24 marzo 2026</div>
+                <div style="font-size:12px;color:#64748b;">SAP: 2001089-B</div>
+            </div>""", unsafe_allow_html=True)
+
+        st.markdown("<div style='height:14px'></div>", unsafe_allow_html=True)
+
+        g1, g2, g3 = st.columns(3)
+        specs_grid = [
+            (g1, "Material", "Frasco rigido plastico 120ml", "🧴"),
+            (g2, "Resina", "HDPE virgen", "⚗️"),
+            (g3, "Gramaje", "22 gramos", "⚖️"),
+            (g1, "Color", "Blanco (masterbatch 2%)", "🎨"),
+            (g2, "Proceso", "Extrusion-soplado · 2 cavidades", "⚙️"),
+            (g3, "Certificacion", "USP Class VI", "✅"),
         ]
-        specs_right = [
-            ("Proceso", "Extrusion-soplado", False),
-            ("Molde", "2 cavidades (propiedad del proveedor)", False),
-            ("Certificacion", "USP Class VI", False),
-            ("Volumen cotizado", "80,000 piezas", False),
-            ("Total cotizacion", "$336,000 MXN", True),
-            ("Dias de credito", "45 dias", False),
-        ]
-        with col1:
-            for label, valor, highlight in specs_left:
-                css = "spec-val-highlight-amber" if highlight else "spec-val"
-                st.markdown(f'<div class="spec-row"><span class="spec-label">{label}</span><span class="{css}">{valor}</span></div>', unsafe_allow_html=True)
-        with col2:
-            for label, valor, highlight in specs_right:
-                css = "spec-val-highlight-amber" if highlight else "spec-val"
-                st.markdown(f'<div class="spec-row"><span class="spec-label">{label}</span><span class="{css}">{valor}</span></div>', unsafe_allow_html=True)
+        for col, label, valor, icon in specs_grid:
+            with col:
+                st.markdown(f"""
+                <div style="background:#ffffff;border:1px solid #e2e8f0;border-radius:8px;padding:12px 14px;margin-bottom:10px;">
+                    <div style="font-size:11px;color:#94a3b8;text-transform:uppercase;letter-spacing:0.5px;font-weight:600;margin-bottom:4px;">{icon} {label}</div>
+                    <div style="font-size:14px;font-weight:600;color:#0f172a;">{valor}</div>
+                </div>""", unsafe_allow_html=True)
 
     with tab2:
         if not st.session_state.hdpe_analizado:
